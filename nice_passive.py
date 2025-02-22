@@ -97,10 +97,14 @@ def finalize(file_path, domain):
 
     unique_lines = {value for value in unique_lines if value}
 
-    if len(unique_lines) == 0:
+    # Save the unique lines to a file named after the domain in the current working directory
+    current_dir = os.getcwd()
+    output_file_path = os.path.join(current_dir, f"{domain}.txt")
+    with open(output_file_path, "w") as output_file:
         for element in unique_lines:
-            file.write(str(element) + "\n")
+            output_file.write(str(element) + "\n")
 
+    print(f"{colors.GRAY}Results saved to: {output_file_path}{colors.GRAY}")
     return unique_lines
 
 
